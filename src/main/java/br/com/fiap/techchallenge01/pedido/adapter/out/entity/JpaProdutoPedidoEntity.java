@@ -2,8 +2,11 @@ package br.com.fiap.techchallenge01.pedido.adapter.out.entity;
 
 import br.com.fiap.techchallenge01.core.utils.entity.JpaBaseEntity;
 import br.com.fiap.techchallenge01.produto.adapter.out.entity.JpaProdutoEntity;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,6 +21,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "produto_pedido")
 public class JpaProdutoPedidoEntity extends JpaBaseEntity {
 
@@ -31,11 +35,11 @@ public class JpaProdutoPedidoEntity extends JpaBaseEntity {
     @Column(name = "observacao")
     private String observacao;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_pedido", nullable=false)
     private JpaPedidoEntity pedido;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="id_produto", nullable=false)
     private JpaProdutoEntity produto;
 }

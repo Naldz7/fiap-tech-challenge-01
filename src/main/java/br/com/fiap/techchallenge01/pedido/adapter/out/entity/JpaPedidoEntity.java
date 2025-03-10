@@ -5,6 +5,7 @@ import br.com.fiap.techchallenge01.cliente.domain.Cliente;
 import br.com.fiap.techchallenge01.core.utils.entity.JpaBaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +18,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Builder
 @Table(name = "pedido")
 public class JpaPedidoEntity extends JpaBaseEntity {
 
@@ -43,6 +45,6 @@ public class JpaPedidoEntity extends JpaBaseEntity {
     @JoinColumn(name="id_cliente", nullable=false)
     private JpaClienteEntity cliente;
 
-    @OneToMany(mappedBy="pedido")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "pedido", orphanRemoval = true)
     private List<JpaProdutoPedidoEntity> produtos = new ArrayList<>();
 }

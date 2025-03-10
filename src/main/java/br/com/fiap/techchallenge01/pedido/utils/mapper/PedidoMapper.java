@@ -57,6 +57,23 @@ public class PedidoMapper {
         pedido.setObservacao(pedidoRequestDTO.getObservacao());
         pedido.setPreco(precoTotal);
         return pedido;
+
+
+//        produtoPedido = ProdutoPedido.builder()
+//                .produto(produto)
+//                .quantidade(produtoPedidoRequestDTO.getQuantidade())
+//                .observacao(produtoPedidoRequestDTO.getObservacao())
+//                .build();
+//        produtos.add(produtoPedido);
+//    }
+//
+//        return Pedido.builder()
+//                .produtos(produtos)
+//                .codigo(gerarCodigo())
+//            .status(StatusPedido.ABERTO.toString())
+//            .observacao(pedidoRequestDTO.getObservacao())
+//            .preco(precoTotal)
+//                .build();
     }
 
     public List<PedidoResponseDTO> toCollectionResponse(List<Pedido> pedidos) {
